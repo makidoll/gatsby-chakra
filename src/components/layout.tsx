@@ -3,7 +3,6 @@ import { ChakraProvider, extendTheme, useColorMode } from "@chakra-ui/react";
 import "@fontsource/roboto";
 import * as React from "react";
 import "../styles/styles.scss";
-import ContextProvider from "./context-provider";
 import Navbar from "./navbar";
 
 const theme = extendTheme({
@@ -40,9 +39,7 @@ function LayoutContent({ children }) {
 export default function Layout({ children }) {
 	return (
 		<ChakraProvider theme={theme}>
-			<ContextProvider>
-				<LayoutContent>{children}</LayoutContent>
-			</ContextProvider>
+			<LayoutContent>{children}</LayoutContent>
 		</ChakraProvider>
 	);
 }

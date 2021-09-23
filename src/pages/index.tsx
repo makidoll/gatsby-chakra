@@ -2,11 +2,12 @@ import { Button } from "@chakra-ui/button";
 import { Badge, Box, Center, Flex, Heading, HStack } from "@chakra-ui/layout";
 import { chakra } from "@chakra-ui/system";
 import { motion, useAnimation } from "framer-motion";
-import React, { useContext, useState } from "react";
-import { Context } from "../components/context-provider";
+import React, { useState } from "react";
+import { useBehaviorSubject } from "../hooks/use-behavior-subject";
+import { State } from "../state";
 
 function Index() {
-	const context = useContext(Context);
+	const names = useBehaviorSubject(State.names$);
 
 	const badges = [
 		["red", "She's cute"],
@@ -22,7 +23,7 @@ function Index() {
 	const changeName = () => {
 		(async () => {
 			await headingControls.start({ y: -5 });
-			setI(i == context.names.length - 1 ? 0 : i + 1);
+			setI(i == names.length - 1 ? 0 : i + 1);
 			await headingControls.start({ y: 5 });
 			await headingControls.start({ y: 0 });
 		})();
@@ -53,7 +54,7 @@ function Index() {
 						<Heading fontSize="6xl">
 							Hi,{" "}
 							<chakra.span fontWeight="extrabold">
-								{context.names[i]}
+								{names[i]}
 							</chakra.span>
 						</Heading>
 					</motion.div>
