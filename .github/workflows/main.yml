@@ -1,4 +1,4 @@
-name: Gatsby Publish
+name: Build and publish
 on:
     push:
         branches:
@@ -8,7 +8,20 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v1
-            - uses: enriikke/gatsby-gh-pages-action@v2
+
+            - uses: actions/cache@v2
               with:
-                  access-token: ${{ secrets.ACCESS_TOKEN }}
-                  deploy-branch: gh-pages
+                  path: "**/node_modules"
+                  key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+            - name: Install packages
+              run: yarn install
+
+            - name: Gatsby build
+              run: yarn build --prefix-paths
+
+            - name: Deploy
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./public

@@ -1,4 +1,5 @@
 module.exports = {
+	pathPrefix: "/gatsby-chakra",
 	siteMetadata: {
 		title: "Gatsby Default Starter",
 		description:
