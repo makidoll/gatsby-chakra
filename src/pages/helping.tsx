@@ -19,7 +19,7 @@ import { Radio, RadioGroup } from "@chakra-ui/radio";
 import { Field, Form, Formik } from "formik";
 import * as React from "react";
 import frog from "../images/frog.png";
-import { State } from "../state";
+import { NamesService } from "../services/names.service";
 
 function Contact() {
 	const [alertText, setAlertText] = React.useState("");
@@ -30,8 +30,10 @@ function Contact() {
 
 	const onSubmit = async (values, actions) => {
 		const name = values.name.toLowerCase();
-		if (!State.names$.value.includes(name)) {
-			State.names$.next([...State.names$.value, name]);
+
+		const { names$ } = NamesService.getInstance();
+		if (!names$.value.includes(name)) {
+			names$.next([...names$.value, name]);
 		}
 
 		setAlertText(JSON.stringify(values, null, 4));

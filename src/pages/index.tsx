@@ -4,10 +4,10 @@ import { chakra } from "@chakra-ui/system";
 import { motion, useAnimation } from "framer-motion";
 import React, { useState } from "react";
 import { useBehaviorSubject } from "../hooks/use-behavior-subject";
-import { State } from "../state";
+import { NamesService } from "../services/names.service";
 
 function Index() {
-	const names = useBehaviorSubject(State.names$);
+	const names = useBehaviorSubject(NamesService.getInstance().names$);
 
 	const badges = [
 		["red", "She's cute"],
