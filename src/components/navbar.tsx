@@ -1,9 +1,11 @@
 import { Button } from "@chakra-ui/button";
-import { Box, Container, Heading } from "@chakra-ui/layout";
+import { Box, Container, Heading, Text } from "@chakra-ui/layout";
 import { Link } from "gatsby";
 import * as React from "react";
 import { FaFrog } from "react-icons/fa";
 import { MdHelp, MdHome } from "react-icons/md";
+import { useBehaviorSubject } from "../hooks/use-behavior-subject";
+import { NamesService } from "../services/names.service";
 
 export default function Navbar() {
 	const routes = [
@@ -11,6 +13,8 @@ export default function Navbar() {
 		{ icon: <FaFrog />, name: "Frog", link: "/frog" },
 		{ icon: <MdHelp />, name: "Helping", link: "/helping" },
 	];
+
+	const names = useBehaviorSubject(NamesService.getInstance().names$);
 
 	return (
 		<Box backgroundColor="red.400" color="white" w="100%" p="1" mb="2">
@@ -39,6 +43,7 @@ export default function Navbar() {
 						</Button>
 					</Link>
 				))}
+				<Text ml="4">{names.length} names</Text>
 			</Container>
 		</Box>
 	);
