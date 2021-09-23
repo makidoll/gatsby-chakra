@@ -1,2 +1,1 @@
-# React Chakra Gatsby
-
+# Gatsby Chakra
