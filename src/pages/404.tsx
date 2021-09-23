@@ -1,5 +1,5 @@
 import { useToast } from "@chakra-ui/toast";
-import { navigate } from "gatsby-link";
+import { navigate, withPrefix } from "gatsby-link";
 import * as React from "react";
 import { useLocation } from "@reach/router";
 
@@ -14,7 +14,7 @@ function NotFound() {
 			duration: 3000,
 			isClosable: true,
 		});
-		navigate("/");
+		navigate(withPrefix("/"));
 	});
 	return <></>;
 }
