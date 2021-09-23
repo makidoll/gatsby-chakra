@@ -1,13 +1,13 @@
 import { Button } from "@chakra-ui/button";
 import { Box, Container, Heading, Text } from "@chakra-ui/layout";
-import { Link } from "gatsby";
+import { StaticQuery, graphql, Link } from "gatsby";
 import * as React from "react";
 import { FaFrog } from "react-icons/fa";
 import { MdHelp, MdHome } from "react-icons/md";
 import { useBehaviorSubject } from "../hooks/use-behavior-subject";
 import { NamesService } from "../services/names.service";
 
-export default function Navbar() {
+function Navbar({ data }) {
 	const routes = [
 		{ icon: <MdHome />, name: "Home", link: "/" },
 		{ icon: <FaFrog />, name: "Frog", link: "/frog" },
@@ -25,9 +25,22 @@ export default function Navbar() {
 				alignItems="center"
 			>
 				<Link to="/">
-					<Heading size="lg" mr="2">
-						Maki
-					</Heading>
+					<StaticQuery
+						query={graphql`
+							query HomePageQuery {
+								site {
+									siteMetadata {
+										title
+									}
+								}
+							}
+						`}
+						render={data => (
+							<Heading size="lg" mr="2">
+								{data.site.siteMetadata.title}
+							</Heading>
+						)}
+					></StaticQuery>
 				</Link>
 				{routes.map(route => (
 					<Link to={route.link} key={route.link}>
@@ -48,3 +61,5 @@ export default function Navbar() {
 		</Box>
 	);
 }
+
+export default Navbar;
