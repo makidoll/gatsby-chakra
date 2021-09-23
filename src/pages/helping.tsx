@@ -18,9 +18,12 @@ import {
 import { Radio, RadioGroup } from "@chakra-ui/radio";
 import { Field, Form, Formik } from "formik";
 import * as React from "react";
+import { Context } from "../components/context-provider";
 import frog from "../images/frog.png";
 
 function Contact() {
+	const context = React.useContext(Context);
+
 	const [alertText, setAlertText] = React.useState("");
 	const closeAlert = () => setAlertText("");
 	const cancelRef = React.useRef();
@@ -28,6 +31,11 @@ function Contact() {
 	const [helped, setHelped] = React.useState(false);
 
 	const onSubmit = async (values, actions) => {
+		const name = values.name.toLowerCase();
+		if (!context.names.includes(name)) {
+			context.setNames([...context.names, name]);
+		}
+
 		setAlertText(JSON.stringify(values, null, 4));
 		setHelped(true);
 	};
