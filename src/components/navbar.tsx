@@ -7,7 +7,7 @@ import { MdHelp, MdHome } from "react-icons/md";
 import { useBehaviorSubject } from "../hooks/use-behavior-subject";
 import { NamesService } from "../services/names.service";
 
-function Navbar({ data }) {
+function Navbar() {
 	const routes = [
 		{ icon: <MdHome />, name: "Home", link: "/" },
 		{ icon: <FaFrog />, name: "Frog", link: "/frog" },
@@ -27,7 +27,7 @@ function Navbar({ data }) {
 				<Link to="/">
 					<StaticQuery
 						query={graphql`
-							query HomePageQuery {
+							query NavbarQuery {
 								site {
 									siteMetadata {
 										title

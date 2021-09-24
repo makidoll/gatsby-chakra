@@ -1,4 +1,4 @@
-import { VStack } from "@chakra-ui/layout";
+import { Box, VStack } from "@chakra-ui/layout";
 import { ChakraProvider, extendTheme, useColorMode } from "@chakra-ui/react";
 import "@fontsource/roboto";
 import * as React from "react";
@@ -29,10 +29,15 @@ function LayoutContent({ children }) {
 	setColorMode("light");
 
 	return (
-		<VStack>
+		<Box
+			display="flex"
+			alignItems="center"
+			justifyContent="center"
+			flexDirection="column"
+		>
 			<Navbar />
 			{children}
-		</VStack>
+		</Box>
 	);
 }
 

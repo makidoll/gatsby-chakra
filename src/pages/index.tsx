@@ -1,8 +1,10 @@
 import { Button } from "@chakra-ui/button";
-import { Badge, Box, Center, Flex, Heading, HStack } from "@chakra-ui/layout";
+import { Badge, Box, Flex, Heading, HStack } from "@chakra-ui/layout";
+import { Link } from "gatsby";
 import { chakra } from "@chakra-ui/system";
 import { motion, useAnimation } from "framer-motion";
 import React, { useState } from "react";
+import Instagram from "../components/instagram";
 import { useBehaviorSubject } from "../hooks/use-behavior-subject";
 import { NamesService } from "../services/names.service";
 
@@ -40,8 +42,8 @@ function Index() {
 	};
 
 	return (
-		<Center height="80vh">
-			<Box shadow="2xl" borderRadius="lg" p="8" minW="400">
+		<>
+			<Box shadow="2xl" borderRadius="lg" p="8" minW="400" mt="8" mb="8">
 				<Flex
 					flexDir="column"
 					alignItems="center"
@@ -84,7 +86,21 @@ function Index() {
 					</motion.div>
 				</Flex>
 			</Box>
-		</Center>
+			<Box
+				shadow="2xl"
+				borderRadius="lg"
+				p="8"
+				pt="4"
+				mt="8"
+				mb="24"
+				textAlign="center"
+			>
+				<Link to="https://www.instagram.com/makixx_/">
+					<Heading mb="4">Instagram</Heading>
+				</Link>
+				<Instagram />
+			</Box>
+		</>
 	);
 }
 
