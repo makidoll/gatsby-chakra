@@ -17,24 +17,23 @@ import {
 } from "@chakra-ui/modal";
 import { Radio, RadioGroup } from "@chakra-ui/radio";
 import { Field, Form, Formik } from "formik";
-import * as React from "react";
+import React, { useRef, useState } from "react";
 import frog from "../images/frog.png";
+import { useService } from "../services/injector";
 import { NamesService } from "../services/names.service";
 
 function Contact() {
-	const [alertText, setAlertText] = React.useState("");
+	const [alertText, setAlertText] = useState("");
 	const closeAlert = () => setAlertText("");
-	const cancelRef = React.useRef();
+	const cancelRef = useRef();
 
-	const [helped, setHelped] = React.useState(false);
+	const [helped, setHelped] = useState(false);
+
+	const namesService = useService<NamesService>(NamesService);
 
 	const onSubmit = async (values, actions) => {
 		const name = values.name.toLowerCase();
-
-		const { names$ } = NamesService.getInstance();
-		if (!names$.value.includes(name)) {
-			names$.next([...names$.value, name]);
-		}
+		namesService.addUniqueName(name);
 
 		setAlertText(JSON.stringify(values, null, 4));
 		setHelped(true);

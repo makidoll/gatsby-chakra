@@ -12,6 +12,7 @@
 		"@emotion/styled": "^11",
 		"@fontsource/inter": "^4.5.0",
 		"@fontsource/roboto": "^4.5.0",
+		"@mindspace-io/react": "^1.7.0",
 		"@types/isomorphic-fetch": "^0.0.35",
 		"@types/xml2js": "^0.4.9",
 		"formik": "^2.2.9",

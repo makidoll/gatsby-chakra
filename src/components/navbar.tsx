@@ -1,10 +1,11 @@
 import { Button } from "@chakra-ui/button";
 import { Box, Container, Heading, Text } from "@chakra-ui/layout";
-import { StaticQuery, graphql, Link } from "gatsby";
+import { graphql, Link, StaticQuery } from "gatsby";
 import * as React from "react";
 import { FaFrog } from "react-icons/fa";
 import { MdHelp, MdHome } from "react-icons/md";
 import { useBehaviorSubject } from "../hooks/use-behavior-subject";
+import { useService } from "../services/injector";
 import { NamesService } from "../services/names.service";
 
 function Navbar() {
@@ -14,7 +15,10 @@ function Navbar() {
 		{ icon: <MdHelp />, name: "Helping", link: "/helping" },
 	];
 
-	const names = useBehaviorSubject(NamesService.getInstance().names$);
+	const namesService = useService<NamesService>(NamesService);
+	const names = useBehaviorSubject(
+		namesService.names$, //.pipe(map(n => n.length)),
+	);
 
 	return (
 		<Box backgroundColor="red.400" color="white" w="100%" p="1" mb="2">

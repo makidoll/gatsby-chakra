@@ -1,22 +1,24 @@
 import { Button } from "@chakra-ui/button";
 import { Badge, Box, Flex, Heading, HStack } from "@chakra-ui/layout";
-import { Link } from "gatsby";
 import { chakra } from "@chakra-ui/system";
 import { motion, useAnimation } from "framer-motion";
-import React, { useState } from "react";
+import { Link } from "gatsby";
+import React from "react";
 import Instagram from "../components/instagram";
 import { useBehaviorSubject } from "../hooks/use-behavior-subject";
+import { useService } from "../services/injector";
 import { NamesService } from "../services/names.service";
 
 function Index() {
-	const names = useBehaviorSubject(NamesService.getInstance().names$);
+	const namesService = useService<NamesService>(NamesService);
+
+	const names = useBehaviorSubject(namesService.names$);
+	const i = useBehaviorSubject(namesService.i$);
 
 	const badges = [
 		["red", "She's cute"],
 		["purple", "And girly"],
 	];
-
-	const [i, setI] = useState(0);
 
 	const headingControls = useAnimation();
 	const badgeControls = useAnimation();
@@ -25,7 +27,7 @@ function Index() {
 	const changeName = () => {
 		(async () => {
 			await headingControls.start({ y: -5 });
-			setI(i == names.length - 1 ? 0 : i + 1);
+			namesService.incrementIndex();
 			await headingControls.start({ y: 5 });
 			await headingControls.start({ y: 0 });
 		})();
