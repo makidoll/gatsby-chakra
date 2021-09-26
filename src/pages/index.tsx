@@ -2,7 +2,6 @@ import { Button } from "@chakra-ui/button";
 import { Badge, Box, Flex, Heading, HStack } from "@chakra-ui/layout";
 import { chakra } from "@chakra-ui/system";
 import { motion, useAnimation } from "framer-motion";
-import { Link } from "gatsby";
 import React from "react";
 import Instagram from "../components/instagram";
 import { useBehaviorSubject } from "../hooks/use-behavior-subject";
@@ -97,9 +96,9 @@ function Index() {
 				mb="24"
 				textAlign="center"
 			>
-				<Link to="https://www.instagram.com/makixx_/">
+				<a href="https://www.instagram.com/makixx_/">
 					<Heading mb="4">Instagram</Heading>
-				</Link>
+				</a>
 				<Instagram />
 			</Box>
 		</>

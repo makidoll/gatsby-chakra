@@ -1,5 +1,5 @@
-import { Grid } from "@chakra-ui/layout";
-import { graphql, Link, StaticQuery } from "gatsby";
+import { Grid, Link } from "@chakra-ui/layout";
+import { graphql, StaticQuery } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import * as React from "react";
 
@@ -28,7 +28,11 @@ function Instagram() {
 			render={data => (
 				<Grid templateColumns="repeat(3, 1fr)" gap={4}>
 					{data.allInstagramImages.nodes.map(image => (
-						<Link key={image.imageId} to={image.link}>
+						<Link
+							key={image.imageId}
+							href={image.link}
+							style={{ borderRadius: "8px" }}
+						>
 							<GatsbyImage
 								style={{ borderRadius: "8px" }}
 								image={getImage(image.localImage)}
