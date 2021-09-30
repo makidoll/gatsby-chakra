@@ -1,5 +1,5 @@
 import { Button } from "@chakra-ui/button";
-import { Box, Container, Heading, Text } from "@chakra-ui/layout";
+import { Box, Container, Flex, Heading, Text } from "@chakra-ui/layout";
 import { graphql, Link, StaticQuery } from "gatsby";
 import * as React from "react";
 import { FaFrog } from "react-icons/fa";
@@ -7,6 +7,7 @@ import { MdHelp, MdHome } from "react-icons/md";
 import { useBehaviorSubject } from "../hooks/use-behavior-subject";
 import { useService } from "../services/injector";
 import { NamesService } from "../services/names.service";
+import { Discord } from "./discord";
 
 function Navbar() {
 	const routes = [
@@ -61,6 +62,8 @@ function Navbar() {
 					</Link>
 				))}
 				<Text ml="4">{names.length} names</Text>
+				<Flex flex="1" />
+				<Discord light flipped small />
 			</Container>
 		</Box>
 	);

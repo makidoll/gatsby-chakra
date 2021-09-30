@@ -2,6 +2,7 @@ import { Image } from "@chakra-ui/image";
 import { Heading, HStack } from "@chakra-ui/layout";
 import { StaticImage } from "gatsby-plugin-image";
 import * as React from "react";
+import { Discord } from "../components/discord";
 import frog from "../images/frog.png";
 
 export default function Caitlyn() {
@@ -21,6 +22,7 @@ export default function Caitlyn() {
 					style={{ marginBottom: `1.45rem` }}
 				/>
 			</HStack>
+			<Discord />
 		</>
 	);
 }
